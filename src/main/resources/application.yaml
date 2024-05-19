@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: wallet
+  data:
+    redis:
+      host: localhost
+  kafka:
+    bootstrap-servers: OUTSIDE://localhost:9092
+    consumer:
+      group-id: myGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  datasource:
+    url: jdbc:h2:~/wallet
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+  sql:
+    init:
+      platform: h2
+
+server:
+  port: 8080
+
+exchange:
+  url: https://v6.exchangerate-api.com
+  apiKey: 6ce346df47461434914e5605
+
+topic:
+  name: user-requests
+
+springdoc:
+  api-docs:
+    path: /api-docs
+    groups:
+      enabled: true
+  swagger-ui:
+    path: /webjars/*
