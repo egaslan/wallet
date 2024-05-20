@@ -3,7 +3,7 @@ spring:
     name: wallet
   data:
     redis:
-      host: localhost
+      host: redis
   kafka:
     bootstrap-servers: OUTSIDE://localhost:9092
     consumer:
