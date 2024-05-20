@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,6 +16,4 @@ public class UserRequestDTO {
     private Double amount;
     private Currency fromCurrency;
     private Currency toCurrency;
-
-
 }

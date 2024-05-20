@@ -36,9 +36,9 @@ public class BalanceRedisService {
             Currency currency = null;
 
             for (Account account : accounts) {
-                if(account.getCurrency() == Currency.TRY){
+                if (account.getCurrency() == Currency.TRY) {
                     totalBalanceList.add(account.getBalance() * Double.parseDouble(Objects.requireNonNull(redisTemplate.opsForValue().get(userId))));
-                }else {
+                } else {
                     totalBalanceList.add(account.getBalance());
                 }
             }

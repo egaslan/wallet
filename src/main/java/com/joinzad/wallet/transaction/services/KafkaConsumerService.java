@@ -16,8 +16,6 @@ public class KafkaConsumerService {
 
     @KafkaListener(topics = "user-requests", groupId = "transaction-group")
     public void consume(String message) {
-        //TODO soutları kaldır
-        System.out.println("Mesaj alındı: " + message);
         if (message.isEmpty()) {
             return;
         }

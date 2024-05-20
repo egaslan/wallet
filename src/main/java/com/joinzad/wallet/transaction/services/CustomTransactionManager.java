@@ -35,12 +35,8 @@ public class CustomTransactionManager {
         }
         Optional<Double> totalAmount = amountList.stream().reduce(Double::sum);
         totalAmount.ifPresent(balance -> updateAccountBalanceOnRedis(userId, balance));
-
-        System.out.println("Para yatırma işlemi: " + userId + " için " + totalAmount);
     }
 
-
-    // Para çekme işlemi
     public void processWithdrawal(String userId, double amount, Currency fromCurrency) {
         updateAccountFromDB(userId, fromCurrency, -amount);
 
@@ -59,6 +55,11 @@ public class CustomTransactionManager {
         System.out.println("Para çekme işlemi: " + userId + " için " + amount);
     }
 
+    public void processExchange(String userId, double amount, Currency fromCurrency, Currency toCurrency) {
+        updateAccountFromDB(userId, fromCurrency, -amount);
+        updateAccountFromDB(userId, toCurrency, amount);
+    }
+
     private void updateAccountFromDB(String userId, Currency fromCurrency, Double amount) {
         var account = accountRepository.findByUserIdAndCurrency(userId, fromCurrency);
         var balance = account.getBalance();
@@ -67,14 +68,6 @@ public class CustomTransactionManager {
         }
         account.setBalance(balance + amount);
         accountRepository.save(account);
-
-    }
-
-    public void processExchange(String userId, double amount, Currency fromCurrency, Currency toCurrency) {
-
-        updateAccountFromDB(userId, fromCurrency, -amount);
-        updateAccountFromDB(userId, toCurrency, amount);
-
     }
 
     private Double exchangeCurrency(Double amount) {

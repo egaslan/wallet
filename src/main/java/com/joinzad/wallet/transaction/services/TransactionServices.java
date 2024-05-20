@@ -16,13 +16,6 @@ public class TransactionServices {
 
     public void triggerKafka() throws JsonProcessingException {
 
-        var user = UserRequestDTO.builder()
-                .userId("123456")
-                .operationType(OperationType.EXCHANGE)
-                .amount(99.0)
-                .fromCurrency(Currency.USD)
-                .toCurrency(Currency.TRY)
-                .build();
         var userForDeposit = UserRequestDTO.builder()
                 .userId("12345")
                 .operationType(OperationType.DEPOSIT)

@@ -20,11 +20,10 @@ public class Producer {
     private final ObjectMapper objectMapper;
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public void sendMessage(UserRequestDTO userRequest ) throws JsonProcessingException {
+    public void sendMessage(UserRequestDTO userRequest) throws JsonProcessingException {
         String userAsMessage = objectMapper.writeValueAsString(userRequest);
         kafkaTemplate.send(orderTopic, userAsMessage);
 
         log.info("food order produced {}", userAsMessage);
-
     }
 }

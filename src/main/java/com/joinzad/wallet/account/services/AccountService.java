@@ -2,9 +2,7 @@ package com.joinzad.wallet.account.services;
 
 import com.joinzad.wallet.account.models.Account;
 import com.joinzad.wallet.account.repositories.AccountRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +18,6 @@ public class AccountService {
     public Account getAccount(String id) {
         return accountRepository.getReferenceById(id);
     }
-
 
     public void updateBalance(String id, double newBalance) {
         Account account = getAccount(id);
