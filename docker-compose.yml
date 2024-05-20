@@ -1,20 +1,10 @@
 version: "3.7"
 
-networks:
-  kafka-net:
-    name: kafka-net
-    driver: bridge
-  redis-net:
-    name: redis-net
-    driver: bridge
-
 services:
   zookeeper:
     image: zookeeper:3.7.0
     container_name: zookeeper
     restart: "no"
-    networks:
-      - kafka-net
     ports:
       - "2182:2181"
 
@@ -22,8 +12,6 @@ services:
     image: obsidiandynamics/kafka
     container_name: kafka
     restart: "no"
-    networks:
-      - kafka-net
     ports:
       - "9092:9092"
     environment:
@@ -36,25 +24,27 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
+    networks:
+      - kafka-net
 
   kafdrop:
     image: obsidiandynamics/kafdrop
     container_name: kafdrop
     restart: "no"
-    networks:
-      - kafka-net
     ports:
       - "9000:9000"
     environment:
       KAFKA_BROKERCONNECT: "kafka:29092"
     depends_on:
       - kafka
+    networks:
+      - kafka-net
 
   redis:
     image: redis:latest
+    container_name: redis
     ports:
       - "6379:6379"
-    container_name: redis
     networks:
       - redis-net
 
@@ -63,9 +53,17 @@ services:
     container_name: wallet
     ports:
       - "8080:8080"
-    networks:
-      - kafka-net
-      - redis-net
     depends_on:
       - kafka
       - redis
+    networks:
+      - kafka-net
+      - redis-net
+
+networks:
+  kafka-net:
+    name: kafka-net
+    driver: bridge
+  redis-net:
+    name: redis-net
+    driver: bridge
