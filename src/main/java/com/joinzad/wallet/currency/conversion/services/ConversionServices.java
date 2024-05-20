@@ -1,8 +1,8 @@
 package com.joinzad.wallet.currency.conversion.services;
 
+import com.joinzad.wallet.account.models.Currency;
 import com.joinzad.wallet.currency.conversion.exchange.ExchangeServices;
 import com.joinzad.wallet.currency.conversion.exchange.dto.ExchangeResponseDTO;
-import com.joinzad.wallet.currency.conversion.modals.Currency;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

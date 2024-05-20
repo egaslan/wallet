@@ -1,6 +1,11 @@
 package com.joinzad.wallet.account.models;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public enum Currency {
-    TRY,
-    USD
+    TRY("TRY"),
+    USD("USD");
+
+    private final String value;
 }

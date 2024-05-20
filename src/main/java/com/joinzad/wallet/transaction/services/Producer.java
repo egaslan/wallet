@@ -2,7 +2,7 @@ package com.joinzad.wallet.transaction.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.joinzad.wallet.transaction.modal.UserRequestDTO;
+import com.joinzad.wallet.transaction.modals.UserRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

@@ -15,7 +15,8 @@ import java.util.Map;
 
 @Configuration
 @RequiredArgsConstructor
-public class Config {
+public class KafkaConfig {
+
     private final KafkaProperties kafkaProperties;
 
     @Bean
@@ -31,7 +32,7 @@ public class Config {
     }
 
     @Bean
-    public NewTopic topic() {
+    public NewTopic userRequestsTopic() {
         return TopicBuilder
                 .name("user-requests")
                 .partitions(1)

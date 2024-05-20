@@ -9,11 +9,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
-@SuperBuilder
-@NoArgsConstructor
 @MappedSuperclass
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 public abstract class BaseEntity {
 
     @Id
