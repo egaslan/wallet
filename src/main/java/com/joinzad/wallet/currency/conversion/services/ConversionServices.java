@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
@@ -30,6 +31,10 @@ public class ConversionServices {
         getCurrencyConversion(Currency.TRY);
     }
 
+    @Scheduled(fixedRate = 1000)
+    private void getCurrencyConversionTrigger(){
+        getCurrencyConversion(Currency.TRY);
+    }
     public ExchangeResponseDTO getCurrencyConversion(Currency currency) {
         ExchangeResponseDTO currencyConversion = exchangeServices.getCurrencyConversion(apiKey, currency);
 
