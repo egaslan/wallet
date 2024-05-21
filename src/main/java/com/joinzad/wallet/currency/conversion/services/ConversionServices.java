@@ -39,7 +39,8 @@ public class ConversionServices {
         ExchangeResponseDTO currencyConversion = exchangeServices.getCurrencyConversion(apiKey, currency);
 
         if (redisTemplate.opsForValue().get(currency.name()) == null) {
-            redisTemplate.opsForValue().set(currency.name(), String.valueOf(currencyConversion.getConversionRates().get(currency.name())), 60, TimeUnit.SECONDS);
+            //TODO: TimeUnit.SECONDS should be written instead of TimeUnit.HOUR.
+            redisTemplate.opsForValue().set(currency.name(), String.valueOf(currencyConversion.getConversionRates().get(currency.name())), 60, TimeUnit.HOURS);
         }
 
         return currencyConversion;

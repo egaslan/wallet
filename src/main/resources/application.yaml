@@ -1,11 +1,8 @@
 spring:
   application:
     name: wallet
-  data:
-    redis:
-      host: redis
   kafka:
-    bootstrap-servers: OUTSIDE://localhost:9092
+    bootstrap-servers: OUTSIDE://kafka:9092
     consumer:
       group-id: myGroup
       auto-offset-reset: earliest
@@ -34,13 +31,19 @@ spring:
   sql:
     init:
       platform: h2
+  data:
+    redis:
+      host: redis
+      port: 6379
+  cache:
+    type: redis
 
 server:
   port: 8080
 
 exchange:
   url: https://v6.exchangerate-api.com
-  apiKey: 6ce346df47461434914e5605
+  apiKey: c98b21330f8008cd60a5aaf7
 
 topic:
   name: user-requests
